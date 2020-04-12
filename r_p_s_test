@@ -3,6 +3,10 @@ import random
 player_name = input("Enter your name: ")
 bot_name = input("Enter your oponent's name: ")
 
+wins = 0
+loses = 0
+draws = 0
+
 options = ["rock", "paper", "scissors"]
 print("\nWeapons:")
 i = 1
@@ -17,37 +21,58 @@ while True:
 
     if choice == "rock" and bot_choice == "paper" or choice == "paper" and bot_choice == "scissors" or choice == "scissors" and bot_choice == "rock":
         print(choice, "vs", bot_choice, "-", bot_name, "wins")
+        loses += 1
     elif choice == "rock" and bot_choice == "scissors" or choice == "paper" and bot_choice == "rock" or choice == "scissors" and bot_choice == "paper":
         print(choice, "vs", bot_choice, "-", player_name, "wins")
+        wins += 1
     elif choice == bot_choice:
         print(choice, "vs", bot_choice, "- draw. Play again")
         continue
+    elif choice == "quit":
+        if wins > loses:
+            print("\n" + player_name, "wins x", wins)
+            print(bot_name, "wins x", loses)
+            print("quit while on top - smart")
+            print("\nbye!")
+            break
+        elif wins < loses:
+            print("\n" + player_name, "wins x", wins)
+            print(bot_name, "wins x", loses)
+            print("going home as a loser")
+            print("\nbye!")
+            break
+        else:
+            wins == loses
+            print("\n" + player_name, "wins x", wins)
+            print(bot_name, "wins x", loses)
+            print("no winners today")
+            print("\nbye!")
+            break
     else:
         choice != "rock" or "paper" or "scissors"
         print("never bring a", choice, "to a playground fight")
         continue
 
-    loss = choice == "rock" and bot_choice == "paper" or choice == "paper" and bot_choice == "scissors" or choice == "scissors" and bot_choice == "rock"
-    win = choice == "rock" and bot_choice == "scissors" or choice == "paper" and bot_choice == "rock" or choice == "scissors" and bot_choice == "paper"
-    draw = choice == bot_choice
-
-    wins = 0
-    loses = 0
-    draws = 0
-
-    if win:
-        wins += 1
-    if loss:
-        loses += 1
-    if draw:
-        draw += 1
-
     again = input("play again? y/n ")
     if again == "y":
         continue
     else:
-        print("\n" + player_name, "wins x", wins)
-        print(bot_name, "wins x", loses)
-        print("draws x", draws)
-        print("\nbye!")
-        break
+        if wins > loses:
+            print("\n" + player_name, "wins x", wins)
+            print(bot_name, "wins x", loses)
+            print("quit while on top - smart")
+            print("\nbye!")
+            break
+        elif wins < loses:
+            print("\n" + player_name, "wins x", wins)
+            print(bot_name, "wins x", loses)
+            print("going home as a loser")
+            print("\nbye!")
+            break
+        else:
+            wins == loses
+            print("\n" + player_name, "wins x", wins)
+            print(bot_name, "wins x", loses)
+            print("no winners today")
+            print("\nbye!")
+            break
